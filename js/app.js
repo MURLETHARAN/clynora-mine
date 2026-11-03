@@ -257,7 +257,7 @@ async function submitLogin(role) {
   // Demo-only mapping: CLYNORA User ID -> Supabase Auth email.
   const demoAccounts = {
     DEMO_DOC_001: {
-      email: 'm.roshini10440@gmail.com',
+      email: 'murletharan4@gmail.com',
       role: 'doc'
     }
   };
@@ -319,6 +319,8 @@ async function submitLogin(role) {
     showToast("Could not load patient records");
   }
 
+  startVitalsRealtime();// if you dont need real time remove this.
+
   closeModal();
   saveSession();
   logAction(`User ${U.name} authenticated successfully`, "Auth");
@@ -345,6 +347,7 @@ async function logout() {
   }
 
   logAction(`User ${signedOutUser} signed out`, "Auth");
+  stopVitalsRealtime(); 
   U = null;
   saveSession();
   go('home');
